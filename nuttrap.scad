@@ -8,7 +8,7 @@ motorThickNess=5;
 offsetx =9;
 offsety  =9;
 barpositionz=30;
-rodwidth =8;
+rodwidth =10;
 nutwidth=14.5;
 
 height = 40;
@@ -21,34 +21,37 @@ holeSize=5.5;
 
 holes = [
 	[nutwidth-2,5,3],
-	[width-5,height-nutwidth+2,3]
+	[width-5,height-nutwidth+2,3],
+    [nutwidth,height-nutwidth-8,3],
+    [nutwidth,height-nutwidth+8,3],
+     [nutwidth-8,height-nutwidth,3],
+     [nutwidth+8,height-nutwidth,3],
 ];
 
 
 
 difference() {
-union() {
+    union() {
 
-cube([width,height,thickness],false);
+        cube([width,height,thickness],false);
 
-translate([nutwidth,height-nutwidth ,3]) 
-	cylinder(h=7,r=nutwidth/2*1.5, center = false, $fs=1);
+        translate([nutwidth,height-nutwidth ,3]) 
+            cylinder(h=7,r=11, center = false, $fs=1);
 
-}
+    }
 
-translate([width-nutwidth*1.2,0,0]) 
-cube([width-nutwidth*1.5,height-nutwidth*1.5,thickness],false);
+    translate([width-nutwidth*1.2,0,0]) 
+        cube([width-nutwidth*1.5,height-nutwidth*1.5,thickness],false);
 
-translate([nutwidth,height-nutwidth,thickness]) {
-	cylinder(h=100,r=nutwidth/2, center = false, $fn =6);
+    translate([nutwidth,height-nutwidth,thickness]) {
 
-	translate([0,0,(-thickness-1)]) 
-	cylinder(h=100,r=rodwidth/2*1.2, center = false, $fs=1);
-}
+        translate([0,0,(-thickness-1)]) 
+            cylinder(h=100,r=rodwidth/2*1.2, center = false, $fs=1);
+    }
 
-	for(i = holes) {
-		translate([ i[0],i[1],0])
-			cylinder(h=100,r=i[2]/2, center = false, $fs=1);
-	}
+    for(i = holes) {
+        translate([ i[0],i[1],0])
+            cylinder(h=100,r=i[2]/2, center = false, $fs=1);
+    }
 
 }

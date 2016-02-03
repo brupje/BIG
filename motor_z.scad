@@ -2,17 +2,16 @@ barwidth = 20;
 width_ridge=4;
 widthNema17=45;
 
-nema17holeOffset =6;
-nema17innerHole=25/2;
-nema17Shaft=8/2;
+
+
 nema17Center = barwidth+widthNema17/2;
-nema17HoleDistance =31;
 
 motorThickNess=5;
 offsetx =0;
 offsety  =0;
 
 
+include <functions.scad>;
 
 height = barwidth+widthNema17+offsety+2;
 width = barwidth+widthNema17+offsetx+2;
@@ -64,24 +63,6 @@ translate([0,0,-0.1]) {
 
 }
 
-translate([nema17Center,nema17Center,-1]) 
-	cylinder(h=100,r=nema17innerHole, center = false, $fs=1);
+nema17(nema17Center,nema17Center,50);
 
-
-translate([nema17Center-nema17HoleDistance/2,nema17Center-nema17HoleDistance/2,thickness+motorThickNess/2])
-rotate([0,0,-45])
-cube([3,6,thickness+motorThickNess+8],true);
-
-
-translate([nema17Center+nema17HoleDistance/2,nema17Center+nema17HoleDistance/2,thickness+motorThickNess/2])
-rotate([0,0,-45])
-cube([3,6,thickness+motorThickNess+8],true);
-
-translate([nema17Center-nema17HoleDistance/2,nema17Center+nema17HoleDistance/2,thickness+motorThickNess/2])
-rotate([0,0,45])
-cube([3,6,thickness+motorThickNess+8],true);
-
-translate([nema17Center+nema17HoleDistance/2,nema17Center-nema17HoleDistance/2,thickness+motorThickNess/2])
-rotate([0,0,45])
-cube([3,6,thickness+motorThickNess+8],true);
 }
